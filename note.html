@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Note</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c1f3a);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating stars */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 8px 2px rgba(255,255,255,0.5);
+  opacity: 0.8;
+  animation: floatStar 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatStar {
+  0% { transform: translateY(0) translateX(0); opacity: 0.6; }
+  50% { transform: translateY(-30px) translateX(15px); opacity: 1; }
+  100% { transform: translateY(0) translateX(0); opacity: 0.6; }
+}
+
+/* Note container */
+.note-container {
+  max-width: 850px;
+  margin: 60px auto;
+  padding: 30px;
+  line-height: 2;
+  font-size: 1.1rem;
+  text-align: justify;
+  color: #d0e7ff;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 2.5s ease;
+}
+
+/* Highlight important words */
+.note-container span {
+  color: #00ffe0;
+  text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
+  font-weight: 600;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(60px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Dreamy back button */
+.back-button {
+  margin: 50px auto;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #00e5ff, #0072ff);
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Button glow and shimmer */
+.back-button::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.5), transparent 60%);
+  animation: shimmer 4s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+  100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+}
+
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 45px #00e5ff, 0 0 80px rgba(0, 255, 255, 0.4);
+}
+
+/* Floating effect for button */
+.back-button {
+  animation: floaty 4s ease-in-out infinite alternate;
+}
+
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* Hide audio */
+audio { display: none; }
+</style>
+</head>
+<body>
+
+<div class="note-container">
+  <p>So hello, I hope ki tu yeh raat mai padh rahi ho, cuz of the timer in it or atleast akeli ho.
+So honestly speaking mujhe kuch idea nhi tha ki kya gift du and all but mujhe yeh idea aya,
+and I hope ki yeh tujhe pasand aya hoga. So like its been a long time since we are friends or <span>best friend</span>.
+So when I was in fifth, it was the first time I saw you, we met in that candle passing ceremony and all.
+And fir class 6th mai ek hi section ho gya. So in starting like sixth mai I was a very shy boy, matlab 
+ladkiyon se bhaii mai bahut dur rehta tha, and now I can't  believe that I am that same person.
+Aur pta nhi tune mujhme aisa kya dekh ki tune mujhe bestfriend banaya. And kasam se uss din mai ghar jaake 
+itna khush hua tha, I cant express that in words bhaii.  And fir hamari kuch dino tak acchi dosti bani rhi.
+And fir woh ek phrase joki tha <span>"You take me for granted"</span> and bhaii uss din ke baad, I can't believe ki humne 
+ek saal tak baat nhi kari. I mean next level chij bhaii. See honestly I wanted talk to you and clear my side and all but mujhe nhi
+pata tha how, kaise bolu, sayad ego ,and haan I mean I accept I have <span>ego issues</span> ,aur bohot jyada. But then you came said sorry even cried,
+and mai tab bhi like no reaction. Fir 8th mai aaye and fir woh sst group wala scene there also you cried and all. See now I will be honest.
+Class 8th mai summer break ke baad I said ki its okay and said we are bestfriends again, and you said okay, matlab maine sorry bhi nhi bola.
+Fir aaye woh din woh suhane din, jab mujhe mere kuch acche dost ignore kar rhe the and like uss time pe meri <span>mental Health</span> ki aisi-taisi ho gyi thi.
+I hope tujhe samajh aarha hai mai kis time ki baat kar rha hun, recent times yaar. See mujhe nhi pata tha ki kon galat tha and even
+abhi bhi I am not able to figure out, and now its okay. But I liked how you were still there matlab, mujhse still baate kar rhi thi. See mujhe nhi pata ki tujhe 
+kya lagta tha ki meri galti thi yaan nhi, but honestly you were talking very maturely at that time.  But everything came back to track, and I was happy.
+Par phir tune bataya ki kaise tujhe bohot bura laga tha jab maine tujhe maaf karne se mana kar diya tha, and also jab maine tujhe 
+apne group mai lene se mana kar diya tha, and you said ki tu socha karti thi ki bhai <span> why Lalit exists in your life</span> and Mujhe yeh sunkar bohot bura laga
+ki maine tujhe itna hurt kiya hai in past. But mujhe koi idea nhi tha iska. But I thought koi nii, ab toh hum bestfriend hai. Par meri kismat. Hum dispersal mai jaa rhe the,
+and pta nhi why,but I said something like,<span>'Mai toh tera bestfriend hun'</span> and you said <span>Nhi !</span>. Fir tune bola ki mai tera 2nd bestfriend hun. Aur bhai I swear 
+mai ghar jaake ke jo matlab rone waali halat hui thi meri, matlab mai tere samne hi ro deta yaar, but maine hold kar liya. 
+Par mujhe aisa lagta hai ki, I deserved that, After all what I did to you. But mujhe woh bestfriendship wapas laani hai. 
+<span>And this time I will fix it, earn it back no matter what</span>. See mere saath koi bhi jyada dino tak ache se nhi reh skta.
+And yeh chij bohot baar ho gyi hai and I know ki kahin naa kahin problem mujhme hi hai. Mai kuch bol deta hun, yaa kuch kar deta hun
+jo mujhe nhi karna chahiye yaa fir kaho ki logon ko wo pasand nhi aata,
+I mean jo hamari ladai hui thi It's  a perfect example.
+ but I can't help yaar. Uper se yeh ego, bhai isme mai toh mai kuch nhi kar skta. I mean ego is good, but mujhme negative ego hai,
+and I accept that as I said earlier. But isse bhi jyada I think people misunderstand and misjudge me. But It's okay.
+Ab maine itna kuch bol diya hai and I don't know, ki tu kya sochegi, but koi naaa! 
+And yeh sab padhne ke baad tera kya reaction hoga, but school mai aake bta diyo, jyada sochiyo mat, jo mann karega bol diyo,
+daant diyo, I dont mind, you have that right to do that. Okay- Okay so its your birthday, Happpppppyyyyyy Birthhhhhdayyyyyy. Matlab tere Birthday ke din
+mai yeh rona kar rha hun. I am sorry and happy birthday. and mujhe bataiyo ki mera yeh gift kaisa laga and 
+what was your reaction becuz I wont be there to see your reaction. And tujhe poem kaisi lagi yeh bhi bataiyo ok. 
+School mai bataiyo yaha yeh insta wagera pe nhi I want your feedback of my note and  poem and all things in person to person, kyunki isko banane mai mera literally pura diwali vacation plus uske baad wala 1 hafta. Bahut mehant lagi bhai yaar ,but its okay you deserve it and its nothing bhai compared to what you deserve. Ok enjoy your day  
+Happy Birthday!!!! 
+</p>
+<br>
+<p>Lalit</p>
+</div>
+
+<!-- Dreamy glowing back button -->
+<button class="back-button" onclick="window.location.href='home.html'">✨ Back to Home ✨</button>
+
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Generate floating stars
+for (let i = 0; i < 70; i++) {
+  const star = document.createElement('div');
+  star.classList.add('star');
+  const size = Math.random() * 3 + 1 + 'px';
+  star.style.width = size;
+  star.style.height = size;
+  star.style.top = Math.random() * window.innerHeight + 'px';
+  star.style.left = Math.random() * window.innerWidth + 'px';
+  star.style.opacity = Math.random();
+  star.style.animationDuration = `${2 + Math.random() * 4}s`;
+  document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>

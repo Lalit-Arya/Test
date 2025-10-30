@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games Universe ✨</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(-45deg, #ffedbc, #ffd6d6, #d0f4de, #b3e5fc);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #222;
+  overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Title */
+h1 {
+  margin-top: 25px;
+  font-size: 2.4rem;
+  color: #111;
+  text-shadow: 0 0 10px #ffffff, 0 0 30px #ffcdd2;
+}
+
+/* Back button */
+.back-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 5;
+}
+.back-btn button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fff, #e1f5fe);
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.back-btn button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+/* Container */
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Game Section Containers */
+.ttt-container, .memory-container {
+  background: rgba(255,255,255,0.8);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.15);
+  backdrop-filter: blur(8px);
+  transition: 0.4s;
+}
+.ttt-container:hover, .memory-container:hover {
+  box-shadow: 0 0 40px rgba(255,255,255,0.4), 0 0 80px rgba(200,200,255,0.3);
+}
+
+/* Titles inside */
+h2 {
+  text-align: center;
+  color: #111;
+  font-size: 1.6rem;
+  text-shadow: 0 0 10px #fff;
+  margin-bottom: 15px;
+}
+
+/* Tic Tac Toe */
+.ttt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+}
+.ttt-cell {
+  background: rgba(255,255,255,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.ttt-cell:hover { background: #ffe5e5; transform: scale(1.05); }
+
+.ttt-buttons, .memory-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.ttt-buttons button, .memory-buttons button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f48fb1, #ce93d8);
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(244,143,177,0.5);
+}
+.ttt-buttons button:hover, .memory-buttons button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(240,98,146,0.8);
+}
+
+/* Memory Game */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(70px,1fr));
+  gap: 15px;
+  justify-items: center;
+}
+.memory-card {
+  width: 70px; height: 70px;
+  background: rgba(255,255,255,0.9);
+  display: flex; justify-content: center; align-items: center;
+  font-size: 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.memory-card.flipped {
+  background: #ffe0f7;
+  transform: scale(1.1);
+}
+
+/* Glowing Popup */
+.popup {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  text-shadow: 0 0 15px #fff, 0 0 35px #ff4081;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 30px 50px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(255,255,255,0.3), 0 0 60px #ff80ab;
+  opacity: 0;
+  z-index: 10;
+  transition: all 0.6s ease;
+  text-align: center;
+}
+.popup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Stars */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Responsive */
+@media(max-width:600px){
+  .ttt-grid {grid-template-columns:repeat(3,70px); grid-template-rows:repeat(3,70px);}
+  .ttt-cell {font-size:2rem;}
+  .memory-card {width:55px; height:55px; font-size:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="back-btn">
+  <button onclick="window.location.href='home.html'">Back to Home</button>
+</div>
+
+<h1>Games Universe ✨</h1>
+<div class="container">
+
+  <!-- Tic Tac Toe -->
+  <div class="ttt-container">
+    <h2>Tic Tac Toe 🎮</h2>
+    <div class="ttt-grid" id="tttGrid">
+      <div class="ttt-cell" data-index="0"></div>
+      <div class="ttt-cell" data-index="1"></div>
+      <div class="ttt-cell" data-index="2"></div>
+      <div class="ttt-cell" data-index="3"></div>
+      <div class="ttt-cell" data-index="4"></div>
+      <div class="ttt-cell" data-index="5"></div>
+      <div class="ttt-cell" data-index="6"></div>
+      <div class="ttt-cell" data-index="7"></div>
+      <div class="ttt-cell" data-index="8"></div>
+    </div>
+    <div class="ttt-buttons">
+      <button id="startTic">Start Tic Tac Toe</button>
+      <button id="resetTic">Reset</button>
+    </div>
+  </div>
+
+  <!-- Memory Game -->
+  <div class="memory-container">
+    <h2>Memory Cards 🧠</h2>
+    <div class="memory-grid" id="memoryGrid"></div>
+    <div class="memory-buttons">
+      <button id="startMemory">Start Memory Game</button>
+      <button id="resetMemory">Reset</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Glow Popup -->
+<div id="popup" class="popup"></div>
+
+<script>
+// Popup message
+function showPopup(message, color="#ff4081") {
+  const popup = document.getElementById("popup");
+  popup.textContent = message;
+  popup.style.textShadow = `0 0 20px ${color}, 0 0 40px ${color}`;
+  popup.classList.add("show");
+  setTimeout(() => popup.classList.remove("show"), 2000);
+}
+
+// Stars background
+for (let i = 0; i < 50; i++) {
+  const s = document.createElement("div");
+  s.classList.add("star");
+  s.style.left = Math.random() * window.innerWidth + "px";
+  s.style.top = Math.random() * window.innerHeight + "px";
+  s.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  document.body.appendChild(s);
+}
+
+// --- Tic Tac Toe ---
+let tttCells = document.querySelectorAll(".ttt-cell");
+let tttBoard = ["","","","","","","","",""];
+let currentPlayer = "X";
+let tttActive = false;
+
+const winningCombos = [
+  [0,1,2],[3,4,5],[6,7,8],
+  [0,3,6],[1,4,7],[2,5,8],
+  [0,4,8],[2,4,6]
+];
+
+function startTic(){
+  tttActive = true;
+  tttBoard.fill("");
+  tttCells.forEach(c => {c.innerText=""; c.style.pointerEvents="auto"; c.style.background="rgba(255,255,255,0.6)";});
+  currentPlayer = "X";
+}
+
+function checkWin(){
+  let winner = null;
+  winningCombos.forEach(combo=>{
+    const [a,b,c] = combo;
+    if(tttBoard[a] && tttBoard[a] === tttBoard[b] && tttBoard[a] === tttBoard[c]){
+      winner = tttBoard[a];
+    }
+  });
+  if(winner){
+    showPopup(winner==="X"?"🎉 You Won!":"🤖 AI Wins!", winner==="X"?"#00e676":"#ff5252");
+    tttActive=false;
+    tttCells.forEach(c=>c.style.pointerEvents="none");
+  } else if(!tttBoard.includes("")){
+    showPopup("😅 It's a Draw!", "#ffd600");
+    tttActive=false;
+  }
+}
+
+function aiMove(){
+  let empty = tttBoard.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+  if(empty.length===0) return;
+  let move = empty[Math.floor(Math.random()*empty.length)];
+  tttBoard[move]="O";
+  tttCells[move].innerText="O";
+  tttCells[move].style.color="#ff1744";
+  checkWin();
+}
+
+tttCells.forEach(cell=>{
+  cell.addEventListener("click", ()=>{
+    if(!tttActive || cell.innerText!=="") return;
+    const idx = cell.dataset.index;
+    tttBoard[idx]="X";
+    cell.innerText="X";
+    cell.style.color="#304ffe";
+    checkWin();
+    if(tttActive) setTimeout(aiMove,400);
+  });
+});
+
+document.getElementById("startTic").addEventListener("click", startTic);
+document.getElementById("resetTic").addEventListener("click", ()=>{
+  tttBoard.fill("");
+  tttCells.forEach(c=>{c.innerText=""; c.style.background="rgba(255,255,255,0.6)";});
+  tttActive=false;
+});
+
+// --- Memory Game ---
+const emojis = ["😂","😎","😍","🤩","😜","😴","🤖"];
+let memoryGrid = document.getElementById("memoryGrid");
+let memoryCards = [];
+let firstCard=null;
+let secondCard=null;
+let lock=false;
+let memoryActive=false;
+
+function shuffle(array){return array.sort(()=>Math.random()-0.5);}
+function startMemory(){
+  memoryActive=true;
+  memoryGrid.innerHTML="";
+  let cards = shuffle([...emojis,...emojis]);
+  cards.forEach((emoji,i)=>{
+    let div = document.createElement("div");
+    div.classList.add("memory-card");
+    div.dataset.emoji=emoji;
+    div.innerText="";
+    div.addEventListener("click", flipMemory);
+    memoryGrid.appendChild(div);
+  });
+  memoryCards = document.querySelectorAll(".memory-card");
+}
+
+function flipMemory(){
+  if(!memoryActive || lock || this.classList.contains("flipped")) return;
+  this.classList.add("flipped");
+  this.innerText = this.dataset.emoji;
+  if(!firstCard) firstCard=this;
+  else{secondCard=this; lock=true;
+    if(firstCard.dataset.emoji===secondCard.dataset.emoji){
+      setTimeout(()=>{firstCard=null; secondCard=null; lock=false; checkMemoryWin();},500);
+    } else {
+      setTimeout(()=>{
+        firstCard.classList.remove("flipped"); firstCard.innerText="";
+        secondCard.classList.remove("flipped"); secondCard.innerText="";
+        firstCard=null; secondCard=null; lock=false;
+      },800);
+    }
+  }
+}
+
+function checkMemoryWin(){
+  let won = [...memoryCards].every(c=>c.classList.contains("flipped"));
+  if(won) showPopup("🎊 You matched all cards!", "#00e5ff");
+}
+
+document.getElementById("startMemory").addEventListener("click", startMemory);
+document.getElementById("resetMemory").addEventListener("click", ()=>{
+  memoryGrid.innerHTML=""; memoryActive=false; firstCard=null; secondCard=null;
+});
+</script>
+
+</body>
+</html>
